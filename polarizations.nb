@@ -1,0 +1,453 @@
+Notebook[{
+Cell[BoxData["Quit"], "Input",
+ CellLabel->"In[14]:=",ExpressionUUID->"1b1d1bc2-e872-4bbf-925a-86cfba66a029"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Npts", "=", "9"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Graphics", "[", 
+  RowBox[{"Ginit", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Circle", "[", "]"}], ",", 
+     RowBox[{"PointSize", "[", ".04", "]"}], ",", "Blue", ",", 
+     RowBox[{"Point", "@", 
+      RowBox[{"CirclePoints", "[", "Npts", "]"}]}]}], "}"}]}], 
+  "]"}]}], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"5c6732c6-7aef-4d60-b379-03f35636a756"],
+
+Cell[BoxData[
+ GraphicsBox[{CircleBox[{0, 0}], 
+   {RGBColor[0, 0, 1], PointSize[0.04], 
+    PointBox[NCache[{{Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}, {
+       Rational[1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {
+       Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+       Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {0, 
+       1}, {-Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {-
+        Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+       Rational[-1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {-
+        Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}}, {{
+       0.3420201433256687, -0.9396926207859084}, {0.8660254037844386, -0.5}, {
+       0.984807753012208, 0.17364817766693033`}, {0.6427876096865393, 
+       0.7660444431189781}, {0, 1}, {-0.6427876096865393, 
+       0.7660444431189781}, {-0.984807753012208, 
+       0.17364817766693033`}, {-0.8660254037844386, -0.5}, \
+{-0.3420201433256687, -0.9396926207859084}}]]}}]], "Output",
+ CellLabel->"Out[2]=",ExpressionUUID->"2dba234d-2eb2-458f-8987-4c5f6aed972c"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"I2", "=", 
+   RowBox[{"IdentityMatrix", "[", "2", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"hp", "=", 
+   RowBox[{"(", GridBox[{
+      {"1", "0"},
+      {"0", 
+       RowBox[{"-", "1"}]}
+     }], ")"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"hx", "=", 
+   RowBox[{"(", GridBox[{
+      {"0", "1"},
+      {"1", "0"}
+     }], ")"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"eps", "=", "0.1"}], ";"}]}], "Input",
+ CellLabel->"In[3]:=",ExpressionUUID->"4595c18a-7930-4259-9d0f-0c41dbc380c5"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"phis", "=", 
+   RowBox[{"2", "\[Pi]", " ", 
+    RowBox[{
+     RowBox[{"Range", "[", 
+      RowBox[{"0", ",", "4"}], "]"}], "/", "4"}]}]}], ";"}]], "Input",
+ CellLabel->"In[7]:=",ExpressionUUID->"b573d5a7-b822-4944-8b08-409619cfe5bb"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"extraPlotFac", "=", "1.05"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"pr", "=", 
+   RowBox[{"PlotRange", "->", 
+    RowBox[{"extraPlotFac", 
+     RowBox[{"(", 
+      RowBox[{"1", "+", "eps"}], ")"}], 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}]}]}]}], 
+  ";"}]}], "Input",
+ CellLabel->"In[8]:=",ExpressionUUID->"16a653bf-140a-4277-a3f1-18068c2483c5"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"frameshp", " ", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Graphics", "[", 
+      RowBox[{
+       RowBox[{"GeometricTransformation", "[", 
+        RowBox[{"Ginit", ",", 
+         RowBox[{"AffineTransform", "[", 
+          RowBox[{"I2", "+", 
+           RowBox[{"eps", " ", 
+            RowBox[{"Sin", "[", "#", "]"}], " ", "hp"}]}], "]"}]}], "]"}], 
+       ",", "pr"}], "]"}], "&"}], "/@", "phis"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"frameshx", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Graphics", "[", 
+      RowBox[{
+       RowBox[{"GeometricTransformation", "[", 
+        RowBox[{"Ginit", ",", 
+         RowBox[{"AffineTransform", "[", 
+          RowBox[{"I2", "+", 
+           RowBox[{"eps", " ", 
+            RowBox[{"Sin", "[", "#", "]"}], " ", "hx"}]}], "]"}]}], "]"}], 
+       ",", "pr"}], "]"}], "&"}], "/@", "phis"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"textrow", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Text", "[", 
+      RowBox[{"Style", "[", 
+       RowBox[{
+        RowBox[{"Row", "[", 
+         RowBox[{"{", 
+          RowBox[{"\"\<\[Phi]\[VeryThinSpace]=\>\"", ",", "#"}], "}"}], "]"}],
+         ",", 
+        RowBox[{"FontSize", "->", "20"}]}], "]"}], "]"}], "&"}], "/@", 
+    "phis"}]}], ";"}]}], "Input",
+ CellLabel->"In[10]:=",ExpressionUUID->"c359a072-d7ac-4b30-9001-5f88889e5611"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"finalgrid", "=", 
+  RowBox[{"Grid", "[", 
+   RowBox[{"{", 
+    RowBox[{"frameshp", ",", "frameshx", ",", "textrow"}], "}"}], 
+   "]"}]}]], "Input",
+ CellLabel->"In[13]:=",ExpressionUUID->"8d91aee1-65e7-4872-a4d0-95bca757354c"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     GraphicsBox[GeometricTransformationBox[{CircleBox[{0, 0}], 
+        {RGBColor[0, 0, 1], PointSize[0.04], 
+         PointBox[
+          NCache[{{Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}, {
+            Rational[1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {
+            Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+            Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {0, 
+            1}, {-Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {-
+             Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+            Rational[-1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {-
+             Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}}, {{
+            0.3420201433256687, -0.9396926207859084}, {
+            0.8660254037844386, -0.5}, {0.984807753012208, 
+            0.17364817766693033`}, {0.6427876096865393, 0.7660444431189781}, {
+            0, 1}, {-0.6427876096865393, 
+            0.7660444431189781}, {-0.984807753012208, 
+            0.17364817766693033`}, {-0.8660254037844386, -0.5}, \
+{-0.3420201433256687, -0.9396926207859084}}]]}}, {{{1., 0.}, {0., 1.}}, {0., 
+        0.}}],
+      PlotRange->{{-1.1550000000000002`, 
+       1.1550000000000002`}, {-1.1550000000000002`, 1.1550000000000002`}}], 
+     GraphicsBox[GeometricTransformationBox[{CircleBox[{0, 0}], 
+        {RGBColor[0, 0, 1], PointSize[0.04], 
+         PointBox[
+          NCache[{{Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}, {
+            Rational[1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {
+            Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+            Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {0, 
+            1}, {-Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {-
+             Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+            Rational[-1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {-
+             Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}}, {{
+            0.3420201433256687, -0.9396926207859084}, {
+            0.8660254037844386, -0.5}, {0.984807753012208, 
+            0.17364817766693033`}, {0.6427876096865393, 0.7660444431189781}, {
+            0, 1}, {-0.6427876096865393, 
+            0.7660444431189781}, {-0.984807753012208, 
+            0.17364817766693033`}, {-0.8660254037844386, -0.5}, \
+{-0.3420201433256687, -0.9396926207859084}}]]}}, {{{1.1, 0.}, {0., 0.9}}, {0.,
+         0.}}],
+      PlotRange->{{-1.1550000000000002`, 
+       1.1550000000000002`}, {-1.1550000000000002`, 1.1550000000000002`}}], 
+     GraphicsBox[GeometricTransformationBox[{CircleBox[{0, 0}], 
+        {RGBColor[0, 0, 1], PointSize[0.04], 
+         PointBox[
+          NCache[{{Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}, {
+            Rational[1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {
+            Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+            Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {0, 
+            1}, {-Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {-
+             Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+            Rational[-1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {-
+             Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}}, {{
+            0.3420201433256687, -0.9396926207859084}, {
+            0.8660254037844386, -0.5}, {0.984807753012208, 
+            0.17364817766693033`}, {0.6427876096865393, 0.7660444431189781}, {
+            0, 1}, {-0.6427876096865393, 
+            0.7660444431189781}, {-0.984807753012208, 
+            0.17364817766693033`}, {-0.8660254037844386, -0.5}, \
+{-0.3420201433256687, -0.9396926207859084}}]]}}, {{{1., 0.}, {0., 1.}}, {0., 
+        0.}}],
+      PlotRange->{{-1.1550000000000002`, 
+       1.1550000000000002`}, {-1.1550000000000002`, 1.1550000000000002`}}], 
+     GraphicsBox[GeometricTransformationBox[{CircleBox[{0, 0}], 
+        {RGBColor[0, 0, 1], PointSize[0.04], 
+         PointBox[
+          NCache[{{Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}, {
+            Rational[1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {
+            Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+            Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {0, 
+            1}, {-Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {-
+             Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+            Rational[-1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {-
+             Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}}, {{
+            0.3420201433256687, -0.9396926207859084}, {
+            0.8660254037844386, -0.5}, {0.984807753012208, 
+            0.17364817766693033`}, {0.6427876096865393, 0.7660444431189781}, {
+            0, 1}, {-0.6427876096865393, 
+            0.7660444431189781}, {-0.984807753012208, 
+            0.17364817766693033`}, {-0.8660254037844386, -0.5}, \
+{-0.3420201433256687, -0.9396926207859084}}]]}}, {{{0.9, 0.}, {0., 1.1}}, {0.,
+         0.}}],
+      PlotRange->{{-1.1550000000000002`, 
+       1.1550000000000002`}, {-1.1550000000000002`, 1.1550000000000002`}}], 
+     GraphicsBox[GeometricTransformationBox[{CircleBox[{0, 0}], 
+        {RGBColor[0, 0, 1], PointSize[0.04], 
+         PointBox[
+          NCache[{{Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}, {
+            Rational[1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {
+            Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+            Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {0, 
+            1}, {-Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {-
+             Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+            Rational[-1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {-
+             Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}}, {{
+            0.3420201433256687, -0.9396926207859084}, {
+            0.8660254037844386, -0.5}, {0.984807753012208, 
+            0.17364817766693033`}, {0.6427876096865393, 0.7660444431189781}, {
+            0, 1}, {-0.6427876096865393, 
+            0.7660444431189781}, {-0.984807753012208, 
+            0.17364817766693033`}, {-0.8660254037844386, -0.5}, \
+{-0.3420201433256687, -0.9396926207859084}}]]}}, {{{1., 0.}, {0., 1.}}, {0., 
+        0.}}],
+      PlotRange->{{-1.1550000000000002`, 
+       1.1550000000000002`}, {-1.1550000000000002`, 1.1550000000000002`}}]},
+    {
+     GraphicsBox[GeometricTransformationBox[{CircleBox[{0, 0}], 
+        {RGBColor[0, 0, 1], PointSize[0.04], 
+         PointBox[
+          NCache[{{Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}, {
+            Rational[1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {
+            Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+            Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {0, 
+            1}, {-Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {-
+             Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+            Rational[-1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {-
+             Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}}, {{
+            0.3420201433256687, -0.9396926207859084}, {
+            0.8660254037844386, -0.5}, {0.984807753012208, 
+            0.17364817766693033`}, {0.6427876096865393, 0.7660444431189781}, {
+            0, 1}, {-0.6427876096865393, 
+            0.7660444431189781}, {-0.984807753012208, 
+            0.17364817766693033`}, {-0.8660254037844386, -0.5}, \
+{-0.3420201433256687, -0.9396926207859084}}]]}}, {{{1., 0.}, {0., 1.}}, {0., 
+        0.}}],
+      PlotRange->{{-1.1550000000000002`, 
+       1.1550000000000002`}, {-1.1550000000000002`, 1.1550000000000002`}}], 
+     GraphicsBox[GeometricTransformationBox[{CircleBox[{0, 0}], 
+        {RGBColor[0, 0, 1], PointSize[0.04], 
+         PointBox[
+          NCache[{{Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}, {
+            Rational[1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {
+            Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+            Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {0, 
+            1}, {-Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {-
+             Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+            Rational[-1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {-
+             Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}}, {{
+            0.3420201433256687, -0.9396926207859084}, {
+            0.8660254037844386, -0.5}, {0.984807753012208, 
+            0.17364817766693033`}, {0.6427876096865393, 0.7660444431189781}, {
+            0, 1}, {-0.6427876096865393, 
+            0.7660444431189781}, {-0.984807753012208, 
+            
+            0.17364817766693033`}, {-0.8660254037844386, -0.5}, \
+{-0.3420201433256687, -0.9396926207859084}}]]}}, {{{1., 0.1}, {0.1, 1.}}, {0.,
+         0.}}],
+      PlotRange->{{-1.1550000000000002`, 
+       1.1550000000000002`}, {-1.1550000000000002`, 1.1550000000000002`}}], 
+     GraphicsBox[GeometricTransformationBox[{CircleBox[{0, 0}], 
+        {RGBColor[0, 0, 1], PointSize[0.04], 
+         PointBox[
+          NCache[{{Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}, {
+            Rational[1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {
+            Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+            Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {0, 
+            1}, {-Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {-
+             Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+            Rational[-1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {-
+             Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}}, {{
+            0.3420201433256687, -0.9396926207859084}, {
+            0.8660254037844386, -0.5}, {0.984807753012208, 
+            0.17364817766693033`}, {0.6427876096865393, 0.7660444431189781}, {
+            0, 1}, {-0.6427876096865393, 
+            0.7660444431189781}, {-0.984807753012208, 
+            0.17364817766693033`}, {-0.8660254037844386, -0.5}, \
+{-0.3420201433256687, -0.9396926207859084}}]]}}, {{{1., 0.}, {0., 1.}}, {0., 
+        0.}}],
+      PlotRange->{{-1.1550000000000002`, 
+       1.1550000000000002`}, {-1.1550000000000002`, 1.1550000000000002`}}], 
+     GraphicsBox[GeometricTransformationBox[{CircleBox[{0, 0}], 
+        {RGBColor[0, 0, 1], PointSize[0.04], 
+         PointBox[
+          NCache[{{Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}, {
+            Rational[1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {
+            Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+            Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {0, 
+            1}, {-Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {-
+             Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+            Rational[-1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {-
+             Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}}, {{
+            0.3420201433256687, -0.9396926207859084}, {
+            0.8660254037844386, -0.5}, {0.984807753012208, 
+            0.17364817766693033`}, {0.6427876096865393, 0.7660444431189781}, {
+            0, 1}, {-0.6427876096865393, 
+            0.7660444431189781}, {-0.984807753012208, 
+            0.17364817766693033`}, {-0.8660254037844386, -0.5}, \
+{-0.3420201433256687, -0.9396926207859084}}]]}}, {{{1., -0.1}, {-0.1, 1.}}, {
+        0., 0.}}],
+      PlotRange->{{-1.1550000000000002`, 
+       1.1550000000000002`}, {-1.1550000000000002`, 1.1550000000000002`}}], 
+     GraphicsBox[GeometricTransformationBox[{CircleBox[{0, 0}], 
+        {RGBColor[0, 0, 1], PointSize[0.04], 
+         PointBox[
+          NCache[{{Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}, {
+            Rational[1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {
+            Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+            Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {0, 
+            1}, {-Sin[Rational[2, 9] Pi], Cos[Rational[2, 9] Pi]}, {-
+             Cos[Rational[1, 18] Pi], Sin[Rational[1, 18] Pi]}, {
+            Rational[-1, 2] 3^Rational[1, 2], Rational[-1, 2]}, {-
+             Sin[Rational[1, 9] Pi], -Cos[Rational[1, 9] Pi]}}, {{
+            0.3420201433256687, -0.9396926207859084}, {
+            0.8660254037844386, -0.5}, {0.984807753012208, 
+            0.17364817766693033`}, {0.6427876096865393, 0.7660444431189781}, {
+            0, 1}, {-0.6427876096865393, 
+            0.7660444431189781}, {-0.984807753012208, 
+            0.17364817766693033`}, {-0.8660254037844386, -0.5}, \
+{-0.3420201433256687, -0.9396926207859084}}]]}}, {{{1., 0.}, {0., 1.}}, {0., 
+        0.}}],
+      PlotRange->{{-1.1550000000000002`, 
+       1.1550000000000002`}, {-1.1550000000000002`, 1.1550000000000002`}}]},
+    {
+     InterpretationBox[Cell[BoxData[
+       FormBox[
+        StyleBox[
+         TemplateBox[{"\"\[Phi]\[VeryThinSpace]=\"", "0"},
+          "RowDefault"],
+         StripOnInput->False,
+         FontSize->20], TextForm]], "InlineText",ExpressionUUID->
+       "63be201d-8cc4-4cae-b009-3b4bb3762cfc"],
+      Text[
+       Style[
+        Row[{"\[Phi]\[VeryThinSpace]=", 0}], FontSize -> 20]]], 
+     InterpretationBox[Cell[BoxData[
+       FormBox[
+        StyleBox[
+         TemplateBox[{"\"\[Phi]\[VeryThinSpace]=\"", 
+           FractionBox["\[Pi]", "2"]},
+          "RowDefault"],
+         StripOnInput->False,
+         FontSize->20], TextForm]], "InlineText",ExpressionUUID->
+       "943d733f-9043-45cd-b391-f7cd521e8b5c"],
+      Text[
+       Style[
+        Row[{"\[Phi]\[VeryThinSpace]=", Rational[1, 2] Pi}], FontSize -> 
+        20]]], 
+     InterpretationBox[Cell[BoxData[
+       FormBox[
+        StyleBox[
+         TemplateBox[{"\"\[Phi]\[VeryThinSpace]=\"", "\[Pi]"},
+          "RowDefault"],
+         StripOnInput->False,
+         FontSize->20], TextForm]], "InlineText",ExpressionUUID->
+       "fe6eb190-71ff-4e46-84d7-8aa3495ba52b"],
+      Text[
+       Style[
+        Row[{"\[Phi]\[VeryThinSpace]=", Pi}], FontSize -> 20]]], 
+     InterpretationBox[Cell[BoxData[
+       FormBox[
+        StyleBox[
+         TemplateBox[{"\"\[Phi]\[VeryThinSpace]=\"", 
+           FractionBox[
+            RowBox[{"3", " ", "\[Pi]"}], "2"]},
+          "RowDefault"],
+         StripOnInput->False,
+         FontSize->20], TextForm]], "InlineText",ExpressionUUID->
+       "9b5edbbc-22db-4b4d-b10d-dcc3e8798834"],
+      Text[
+       Style[
+        Row[{"\[Phi]\[VeryThinSpace]=", Rational[3, 2] Pi}], FontSize -> 
+        20]]], 
+     InterpretationBox[Cell[BoxData[
+       FormBox[
+        StyleBox[
+         TemplateBox[{"\"\[Phi]\[VeryThinSpace]=\"", 
+           RowBox[{"2", " ", "\[Pi]"}]},
+          "RowDefault"],
+         StripOnInput->False,
+         FontSize->20], TextForm]], "InlineText",ExpressionUUID->
+       "0a1a82c4-735b-4a54-8bff-af745048e748"],
+      Text[
+       Style[
+        Row[{"\[Phi]\[VeryThinSpace]=", 2 Pi}], FontSize -> 20]]]}
+   },
+   AutoDelete->False,
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellLabel->
+  "Out[13]=",ExpressionUUID->"74c95ce3-1286-4957-b35f-e2198f59ec78"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"NotebookDirectory", "[", "]"}], "<>", 
+    "\"\<polarizations.pdf\>\""}], ",", "finalgrid"}], "]"}]], "Input",
+ CellLabel->"In[14]:=",ExpressionUUID->"7c98ba78-0146-401a-b4ad-049905df9b4a"],
+
+Cell[BoxData["\<\"/Users/leo/Documents/calculations/gravitational-wave-\
+polarizations-figure/polarizations.pdf\"\>"], "Output",
+ CellLabel->
+  "Out[14]=",ExpressionUUID->"0332d6e9-359c-4c06-8824-e5fd0386e1b9"]
+}, Open  ]]
+},
+WindowSize->{1213, 771},
+WindowMargins->{{104, Automatic}, {Automatic, 47}},
+PrivateNotebookOptions->{"FileOutlineCache"->False},
+FrontEndVersion->"13.1 for Mac OS X x86 (64-bit) (June 16, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"b4831259-89fd-4c72-a9db-63b7bc37dd3b"
+]
